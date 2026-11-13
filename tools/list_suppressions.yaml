@@ -1,0 +1,53 @@
+identity:
+  name: list_suppressions
+  author: ayinbox
+  label:
+    en_US: List suppressions
+    zh_Hans: 列出屏蔽列表
+description:
+  human:
+    en_US: List addresses and domains that AY Inbox will not email.
+    zh_Hans: 列出 AY Inbox 不会发送邮件的地址和域名。
+  llm: 'Lists the workspace''s suppression list: email addresses and domains that campaigns never mail, with kind,
+    reason and source. Paginated.'
+parameters:
+- name: query
+  type: string
+  required: false
+  label:
+    en_US: Search
+    zh_Hans: 搜索
+  human_description:
+    en_US: Match an address or domain.
+    zh_Hans: 匹配地址或域名。
+  llm_description: Optional text to match against suppressed addresses or domains.
+  form: llm
+- name: cursor
+  type: string
+  required: false
+  label:
+    en_US: Cursor
+    zh_Hans: 游标
+  human_description:
+    en_US: The cursor from the previous page. Leave empty for the first page.
+    zh_Hans: 上一页返回的游标。第一页请留空。
+  llm_description: Opaque pagination cursor. Pass next_cursor from the previous result unchanged to read the next
+    page; omit for the first page.
+  form: llm
+- name: limit
+  type: number
+  required: false
+  label:
+    en_US: Page size
+    zh_Hans: 每页数量
+  human_description:
+    en_US: How many rows to return, 1 to 100.
+    zh_Hans: 返回的行数，1 到 100。
+  llm_description: Rows per page, 1 to 100. Use a small number unless you need many rows.
+  form: llm
+  default: 25
+  min: 1
+  max: 100
+extra:
+  python:
+    source: tools/list_suppressions.py

@@ -1,0 +1,86 @@
+identity:
+  name: list_campaigns
+  author: ayinbox
+  label:
+    en_US: List campaigns
+    zh_Hans: 列出活动
+description:
+  human:
+    en_US: List campaigns, optionally filtered by name or status.
+    zh_Hans: 列出活动，可按名称或状态筛选。
+  llm: Lists AY Inbox cold email campaigns with id, name, status and settings. Filter by a name search or a status.
+    Paginated.
+parameters:
+- name: query
+  type: string
+  required: false
+  label:
+    en_US: Name contains
+    zh_Hans: 名称包含
+  human_description:
+    en_US: Search campaigns by name.
+    zh_Hans: 按名称搜索活动。
+  llm_description: Optional text to match against campaign names.
+  form: llm
+- name: status
+  type: select
+  required: false
+  label:
+    en_US: Status
+    zh_Hans: 状态
+  human_description:
+    en_US: Only campaigns with this status.
+    zh_Hans: 仅显示此状态的活动。
+  llm_description: 'Optional status filter: draft, active, paused or completed (paused includes every paused state).'
+  form: llm
+  default: any
+  options:
+  - value: any
+    label:
+      en_US: Any
+      zh_Hans: 任意
+  - value: draft
+    label:
+      en_US: Draft
+      zh_Hans: 草稿
+  - value: active
+    label:
+      en_US: Active
+      zh_Hans: 进行中
+  - value: paused
+    label:
+      en_US: Paused
+      zh_Hans: 已暂停
+  - value: completed
+    label:
+      en_US: Completed
+      zh_Hans: 已完成
+- name: cursor
+  type: string
+  required: false
+  label:
+    en_US: Cursor
+    zh_Hans: 游标
+  human_description:
+    en_US: The cursor from the previous page. Leave empty for the first page.
+    zh_Hans: 上一页返回的游标。第一页请留空。
+  llm_description: Opaque pagination cursor. Pass next_cursor from the previous result unchanged to read the next
+    page; omit for the first page.
+  form: llm
+- name: limit
+  type: number
+  required: false
+  label:
+    en_US: Page size
+    zh_Hans: 每页数量
+  human_description:
+    en_US: How many rows to return, 1 to 100.
+    zh_Hans: 返回的行数，1 到 100。
+  llm_description: Rows per page, 1 to 100. Use a small number unless you need many rows.
+  form: llm
+  default: 25
+  min: 1
+  max: 100
+extra:
+  python:
+    source: tools/list_campaigns.py

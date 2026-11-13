@@ -1,0 +1,53 @@
+identity:
+  name: list_mailboxes
+  author: ayinbox
+  label:
+    en_US: List mailboxes
+    zh_Hans: 列出邮箱
+description:
+  human:
+    en_US: List the sending mailboxes connected to the workspace.
+    zh_Hans: 列出工作区中已连接的发件邮箱。
+  llm: Lists the workspace's connected sending mailboxes with id, address, provider, status, warmup state and daily
+    campaign limit. Use the ids for sender_mailbox_ids, mailbox_id and drafts. Paginated.
+parameters:
+- name: query
+  type: string
+  required: false
+  label:
+    en_US: Search
+    zh_Hans: 搜索
+  human_description:
+    en_US: Match an address or name.
+    zh_Hans: 匹配邮箱地址或名称。
+  llm_description: Optional text to match against mailbox address or name.
+  form: llm
+- name: cursor
+  type: string
+  required: false
+  label:
+    en_US: Cursor
+    zh_Hans: 游标
+  human_description:
+    en_US: The cursor from the previous page. Leave empty for the first page.
+    zh_Hans: 上一页返回的游标。第一页请留空。
+  llm_description: Opaque pagination cursor. Pass next_cursor from the previous result unchanged to read the next
+    page; omit for the first page.
+  form: llm
+- name: limit
+  type: number
+  required: false
+  label:
+    en_US: Page size
+    zh_Hans: 每页数量
+  human_description:
+    en_US: How many rows to return, 1 to 100.
+    zh_Hans: 返回的行数，1 到 100。
+  llm_description: Rows per page, 1 to 100. Use a small number unless you need many rows.
+  form: llm
+  default: 25
+  min: 1
+  max: 100
+extra:
+  python:
+    source: tools/list_mailboxes.py

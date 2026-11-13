@@ -1,0 +1,94 @@
+identity:
+  name: save_email_draft
+  author: ayinbox
+  label:
+    en_US: Save email draft
+    zh_Hans: 保存邮件草稿
+description:
+  human:
+    en_US: Save an email draft for a person to review and send in AY Inbox. Nothing is sent.
+    zh_Hans: 保存一封邮件草稿，供人员在 AY Inbox 中审阅并发送。不会发送任何邮件。
+  llm: 'Saves an email draft in the AY Inbox Unibox drafts of the key''s member, from one connected mailbox. It
+    never sends: a person reviews and sends it. The draft is not linked to a thread, so for a reply use the thread''s
+    subject with Re: and quote what you answer. Pass draft_id to overwrite a draft you saved before.'
+parameters:
+- name: mailbox_id
+  type: string
+  required: true
+  label:
+    en_US: From mailbox id
+    zh_Hans: 发件邮箱 ID
+  human_description:
+    en_US: The mailbox the email will be sent from.
+    zh_Hans: 用于发送邮件的邮箱。
+  llm_description: Mailbox UUID to send from, from list_mailboxes or the thread's mailbox id.
+  form: llm
+- name: to
+  type: string
+  required: true
+  label:
+    en_US: To
+    zh_Hans: 收件人
+  human_description:
+    en_US: Comma-separated recipient addresses.
+    zh_Hans: 以逗号分隔的收件人地址。
+  llm_description: Comma-separated recipient email addresses.
+  form: llm
+- name: subject
+  type: string
+  required: true
+  label:
+    en_US: Subject
+    zh_Hans: 主题
+  human_description:
+    en_US: The subject line.
+    zh_Hans: 邮件主题。
+  llm_description: Subject line.
+  form: llm
+- name: body
+  type: string
+  required: true
+  label:
+    en_US: Body
+    zh_Hans: 正文
+  human_description:
+    en_US: Plain text body.
+    zh_Hans: 纯文本正文。
+  llm_description: Plain text body of the email, up to 100,000 characters.
+  form: llm
+- name: cc
+  type: string
+  required: false
+  label:
+    en_US: Cc
+    zh_Hans: 抄送
+  human_description:
+    en_US: Comma-separated Cc addresses.
+    zh_Hans: 以逗号分隔的抄送地址。
+  llm_description: Optional comma-separated Cc addresses.
+  form: llm
+- name: bcc
+  type: string
+  required: false
+  label:
+    en_US: Bcc
+    zh_Hans: 密送
+  human_description:
+    en_US: Comma-separated Bcc addresses.
+    zh_Hans: 以逗号分隔的密送地址。
+  llm_description: Optional comma-separated Bcc addresses.
+  form: llm
+- name: draft_id
+  type: string
+  required: false
+  label:
+    en_US: Draft id
+    zh_Hans: 草稿 ID
+  human_description:
+    en_US: Update this existing draft instead of creating one.
+    zh_Hans: 更新此现有草稿而不是新建。
+  llm_description: Optional UUID of a draft this tool saved before, to overwrite it.
+  form: llm
+extra:
+  python:
+    source: tools/save_email_draft.py

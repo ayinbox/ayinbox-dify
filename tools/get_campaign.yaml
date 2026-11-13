@@ -1,0 +1,39 @@
+identity:
+  name: get_campaign
+  author: ayinbox
+  label:
+    en_US: Get campaign
+    zh_Hans: 获取活动
+description:
+  human:
+    en_US: Read one campaign and, when the key allows it, its sending and reply stats.
+    zh_Hans: 读取单个活动，并在密钥允许时读取其发送和回复统计。
+  llm: Reads one campaign by id with its full settings, plus a stats summary (contacts, sent, pending, replies,
+    positive replies, bounces, unsubscribes) when the key has READ_ANALYTICS.
+parameters:
+- name: campaign_id
+  type: string
+  required: true
+  label:
+    en_US: Campaign id
+    zh_Hans: 活动 ID
+  human_description:
+    en_US: The campaign's id (a UUID).
+    zh_Hans: 活动的 ID（UUID）。
+  llm_description: The campaign UUID, from list_campaigns.
+  form: llm
+- name: include_stats
+  type: boolean
+  required: false
+  label:
+    en_US: Include stats
+    zh_Hans: 包含统计
+  human_description:
+    en_US: Also read the campaign's stats.
+    zh_Hans: 同时读取活动统计。
+  llm_description: Set false to skip the stats read.
+  form: llm
+  default: true
+extra:
+  python:
+    source: tools/get_campaign.py

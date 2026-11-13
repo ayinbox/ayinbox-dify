@@ -1,0 +1,50 @@
+identity:
+  name: add_suppressions
+  author: ayinbox
+  label:
+    en_US: Add suppressions
+    zh_Hans: 添加屏蔽项
+description:
+  human:
+    en_US: Add email addresses or domains that AY Inbox must never email.
+    zh_Hans: 添加 AY Inbox 永远不得发送邮件的邮箱地址或域名。
+  llm: Adds email addresses or whole domains to the suppression list so campaigns never mail them. Use it when someone
+    asks not to be contacted. Entries already present are skipped. This tool cannot remove a suppression.
+parameters:
+- name: values
+  type: string
+  required: true
+  label:
+    en_US: Addresses or domains
+    zh_Hans: 地址或域名
+  human_description:
+    en_US: Comma or newline separated addresses (name@example.com) or domains (example.com).
+    zh_Hans: 以逗号或换行分隔的地址（name@example.com）或域名（example.com）。
+  llm_description: Comma-separated email addresses or domains to suppress, up to 1000.
+  form: llm
+- name: reason
+  type: string
+  required: false
+  label:
+    en_US: Reason
+    zh_Hans: 原因
+  human_description:
+    en_US: Why these are suppressed.
+    zh_Hans: 屏蔽原因。
+  llm_description: 'Optional short reason, for example: asked not to be contacted.'
+  form: llm
+- name: idempotency_key
+  type: string
+  required: false
+  label:
+    en_US: Idempotency key
+    zh_Hans: 幂等键
+  human_description:
+    en_US: Optional. Repeating a call with the same key within 24 hours does not apply the change twice.
+    zh_Hans: 可选。24 小时内使用相同的键重复调用不会重复执行更改。
+  llm_description: Optional unique string (for example a UUID). Reuse the same value only when retrying the same
+    call. A call with a key is retried safely on temporary errors; a call without one is not.
+  form: llm
+extra:
+  python:
+    source: tools/add_suppressions.py

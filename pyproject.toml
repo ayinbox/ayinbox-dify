@@ -1,0 +1,13 @@
+# Development settings only. The plugin's runtime dependencies are in requirements.txt.
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["ayinbox_api"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

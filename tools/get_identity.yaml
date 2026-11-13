@@ -1,0 +1,16 @@
+identity:
+  name: get_identity
+  author: ayinbox
+  label:
+    en_US: Who am I
+    zh_Hans: 当前身份
+description:
+  human:
+    en_US: Show the member, workspace and scopes behind the API key.
+    zh_Hans: 显示 API 密钥对应的成员、工作区和权限范围。
+  llm: Returns the AY Inbox member and workspace the API key acts for, and the key's scopes. Call it first to learn
+    which other tools the key may use.
+parameters: []
+extra:
+  python:
+    source: tools/get_identity.py

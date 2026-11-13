@@ -1,0 +1,173 @@
+identity:
+  name: search_contacts
+  author: ayinbox
+  label:
+    en_US: Search contacts
+    zh_Hans: 搜索联系人
+description:
+  human:
+    en_US: Search contacts by text, campaign, subscription or verification status.
+    zh_Hans: 按文本、活动、订阅或验证状态搜索联系人。
+  llm: Searches AY Inbox contacts. Matches free text against name, email and company, and filters by campaign, subscription
+    and verification status. With campaign_id each row carries that campaign's lead progress. Paginated.
+parameters:
+- name: query
+  type: string
+  required: false
+  label:
+    en_US: Search text
+    zh_Hans: 搜索文本
+  human_description:
+    en_US: Text to match in name, email or company.
+    zh_Hans: 在姓名、邮箱或公司中匹配的文本。
+  llm_description: Optional free text, such as a name, an email address or a company.
+  form: llm
+- name: campaign_id
+  type: string
+  required: false
+  label:
+    en_US: Campaign id
+    zh_Hans: 活动 ID
+  human_description:
+    en_US: Only contacts in this campaign.
+    zh_Hans: 仅显示此活动中的联系人。
+  llm_description: Optional campaign UUID. Rows then include campaign_lead progress.
+  form: llm
+- name: subscribed
+  type: select
+  required: false
+  label:
+    en_US: Subscribed
+    zh_Hans: 订阅状态
+  human_description:
+    en_US: Filter by subscription.
+    zh_Hans: 按订阅状态筛选。
+  llm_description: 'Optional: true for subscribed contacts, false for unsubscribed ones.'
+  form: llm
+  default: any
+  options:
+  - &id001
+    value: any
+    label:
+      en_US: Any
+      zh_Hans: 任意
+  - value: 'true'
+    label:
+      en_US: Subscribed
+      zh_Hans: 已订阅
+  - value: 'false'
+    label:
+      en_US: Unsubscribed
+      zh_Hans: 已退订
+- name: verification_status
+  type: select
+  required: false
+  label:
+    en_US: Verification
+    zh_Hans: 验证状态
+  human_description:
+    en_US: Filter by email verification result.
+    zh_Hans: 按邮箱验证结果筛选。
+  llm_description: 'Optional verification filter: valid, risky, invalid or unknown.'
+  form: llm
+  default: any
+  options:
+  - *id001
+  - value: valid
+    label:
+      en_US: Valid
+      zh_Hans: 有效
+  - value: risky
+    label:
+      en_US: Risky
+      zh_Hans: 有风险
+  - value: invalid
+    label:
+      en_US: Invalid
+      zh_Hans: 无效
+  - value: unknown
+    label:
+      en_US: Unknown
+      zh_Hans: 未知
+- name: sort_by
+  type: select
+  required: false
+  label:
+    en_US: Sort by
+    zh_Hans: 排序字段
+  human_description:
+    en_US: Field to sort by. Newest first by default.
+    zh_Hans: 排序字段。默认最新优先。
+  llm_description: Optional sort field. Default created_at, newest first.
+  form: llm
+  default: any
+  options:
+  - *id001
+  - value: created_at
+    label:
+      en_US: Created
+      zh_Hans: 创建时间
+  - value: updated_at
+    label:
+      en_US: Updated
+      zh_Hans: 更新时间
+  - value: first_name
+    label:
+      en_US: First name
+      zh_Hans: 名
+  - value: last_name
+    label:
+      en_US: Last name
+      zh_Hans: 姓
+  - value: email
+    label:
+      en_US: Email
+      zh_Hans: 邮箱
+  - value: company
+    label:
+      en_US: Company
+      zh_Hans: 公司
+  - value: lead_score
+    label:
+      en_US: Lead score
+      zh_Hans: 线索评分
+- name: ascending
+  type: boolean
+  required: false
+  label:
+    en_US: Ascending
+    zh_Hans: 升序
+  human_description:
+    en_US: Sort ascending instead of descending.
+    zh_Hans: 按升序而非降序排序。
+  llm_description: Optional. True sorts ascending.
+  form: llm
+- name: cursor
+  type: string
+  required: false
+  label:
+    en_US: Cursor
+    zh_Hans: 游标
+  human_description:
+    en_US: The cursor from the previous page. Leave empty for the first page.
+    zh_Hans: 上一页返回的游标。第一页请留空。
+  llm_description: Opaque pagination cursor. Pass next_cursor from the previous result unchanged to read the next
+    page; omit for the first page.
+  form: llm
+- name: limit
+  type: number
+  required: false
+  label:
+    en_US: Page size
+    zh_Hans: 每页数量
+  human_description:
+    en_US: How many rows to return, 1 to 100.
+    zh_Hans: 返回的行数，1 到 100。
+  llm_description: Rows per page, 1 to 100. Use a small number unless you need many rows.
+  form: llm
+  default: 25
+  min: 1
+  max: 100
+extra:
+  python:
+    source: tools/search_contacts.py

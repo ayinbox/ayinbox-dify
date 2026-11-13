@@ -1,0 +1,95 @@
+identity:
+  name: create_contact
+  author: ayinbox
+  label:
+    en_US: Create contact
+    zh_Hans: 创建联系人
+description:
+  human:
+    en_US: Add a contact, or update it if the address already exists. It is not added to any campaign.
+    zh_Hans: 添加联系人；如果邮箱已存在则更新。不会加入任何活动。
+  llm: Creates a contact by email address. An existing address is updated instead of duplicated, and empty fields
+    are left alone. The contact is not added to any campaign, so this sends nothing.
+parameters:
+- name: email
+  type: string
+  required: true
+  label:
+    en_US: Email
+    zh_Hans: 邮箱
+  human_description:
+    en_US: The contact's email address.
+    zh_Hans: 联系人的邮箱地址。
+  llm_description: The contact's email address.
+  form: llm
+- name: first_name
+  type: string
+  required: false
+  label:
+    en_US: First name
+    zh_Hans: 名
+  human_description:
+    en_US: First name.
+    zh_Hans: 名。
+  llm_description: Optional first name.
+  form: llm
+- name: last_name
+  type: string
+  required: false
+  label:
+    en_US: Last name
+    zh_Hans: 姓
+  human_description:
+    en_US: Last name.
+    zh_Hans: 姓。
+  llm_description: Optional last name.
+  form: llm
+- name: company
+  type: string
+  required: false
+  label:
+    en_US: Company
+    zh_Hans: 公司
+  human_description:
+    en_US: Company name.
+    zh_Hans: 公司名称。
+  llm_description: Optional company name.
+  form: llm
+- name: phone
+  type: string
+  required: false
+  label:
+    en_US: Phone
+    zh_Hans: 电话
+  human_description:
+    en_US: Phone number.
+    zh_Hans: 电话号码。
+  llm_description: Optional phone number.
+  form: llm
+- name: custom_fields
+  type: string
+  required: false
+  label:
+    en_US: Custom fields (JSON)
+    zh_Hans: 自定义字段（JSON）
+  human_description:
+    en_US: 'Optional JSON object of text fields, for example {"title": "Head of Ops"}.'
+    zh_Hans: '可选的文本字段 JSON 对象，例如 {"title": "Head of Ops"}。'
+  llm_description: 'Optional JSON object mapping custom field names to text values, for example {"title": "Head
+    of Ops"}. Merged key by key into an existing contact.'
+  form: llm
+- name: idempotency_key
+  type: string
+  required: false
+  label:
+    en_US: Idempotency key
+    zh_Hans: 幂等键
+  human_description:
+    en_US: Optional. Repeating a call with the same key within 24 hours does not apply the change twice.
+    zh_Hans: 可选。24 小时内使用相同的键重复调用不会重复执行更改。
+  llm_description: Optional unique string (for example a UUID). Reuse the same value only when retrying the same
+    call. A call with a key is retried safely on temporary errors; a call without one is not.
+  form: llm
+extra:
+  python:
+    source: tools/create_contact.py

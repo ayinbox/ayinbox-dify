@@ -1,0 +1,45 @@
+identity:
+  author: ayinbox
+  name: ayinbox
+  label:
+    en_US: AY Inbox
+    zh_Hans: AY Inbox
+  description:
+    en_US: Read campaigns, contacts, mailboxes and inbox threads in AY Inbox, the hosted cold email platform, and create drafts, contacts and suppressions. No tool sends mail or starts a campaign.
+    zh_Hans: 读取 AY Inbox（托管式冷邮件平台）中的活动、联系人、邮箱和收件箱会话，并创建草稿、联系人和屏蔽项。任何工具都不会发送邮件或启动活动。
+  icon: icon.svg
+  tags:
+    - business
+    - productivity
+credentials_for_provider:
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: API key
+      zh_Hans: API 密钥
+    placeholder:
+      en_US: aybox_...
+      zh_Hans: aybox_...
+    help:
+      en_US: Create an API key in the AY Inbox dashboard at app.ayinbox.com. Give it only the scopes your tools need; the README lists them.
+      zh_Hans: 在 AY Inbox 控制台（app.ayinbox.com）中创建 API 密钥，只授予所需的权限范围；README 中列出了各工具所需的权限。
+    url: https://docs.ayinbox.com/api/
+tools:
+  - tools/get_identity.yaml
+  - tools/list_campaigns.yaml
+  - tools/get_campaign.yaml
+  - tools/create_campaign_draft.yaml
+  - tools/pause_campaign.yaml
+  - tools/search_contacts.yaml
+  - tools/create_contact.yaml
+  - tools/update_contact.yaml
+  - tools/list_mailboxes.yaml
+  - tools/list_threads.yaml
+  - tools/get_thread.yaml
+  - tools/save_email_draft.yaml
+  - tools/list_suppressions.yaml
+  - tools/add_suppressions.yaml
+extra:
+  python:
+    source: provider/ayinbox.py

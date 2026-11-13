@@ -1,0 +1,39 @@
+identity:
+  name: pause_campaign
+  author: ayinbox
+  label:
+    en_US: Pause campaign
+    zh_Hans: 暂停活动
+description:
+  human:
+    en_US: Pause an active campaign. Pausing sends nothing.
+    zh_Hans: 暂停进行中的活动。暂停不会发送任何邮件。
+  llm: Pauses an active campaign so it sends nothing more. The campaign must be active. Resuming is left to a person
+    in AY Inbox.
+parameters:
+- name: campaign_id
+  type: string
+  required: true
+  label:
+    en_US: Campaign id
+    zh_Hans: 活动 ID
+  human_description:
+    en_US: The id of the active campaign.
+    zh_Hans: 进行中活动的 ID。
+  llm_description: The campaign UUID to pause.
+  form: llm
+- name: idempotency_key
+  type: string
+  required: false
+  label:
+    en_US: Idempotency key
+    zh_Hans: 幂等键
+  human_description:
+    en_US: Optional. Repeating a call with the same key within 24 hours does not apply the change twice.
+    zh_Hans: 可选。24 小时内使用相同的键重复调用不会重复执行更改。
+  llm_description: Optional unique string (for example a UUID). Reuse the same value only when retrying the same
+    call. A call with a key is retried safely on temporary errors; a call without one is not.
+  form: llm
+extra:
+  python:
+    source: tools/pause_campaign.py

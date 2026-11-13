@@ -1,0 +1,146 @@
+identity:
+  name: create_campaign_draft
+  author: ayinbox
+  label:
+    en_US: Create campaign draft
+    zh_Hans: 创建活动草稿
+description:
+  human:
+    en_US: Create a draft campaign with its email steps. A draft sends nothing; a person adds leads and starts it
+      in AY Inbox.
+    zh_Hans: 创建带邮件步骤的活动草稿。草稿不会发送任何邮件；需由人员在 AY Inbox 中添加线索并启动。
+  llm: 'Creates a new campaign in draft status with an optional sequence of email steps. It never sends mail and
+    cannot start the campaign: a person adds leads and starts it in AY Inbox. Write the first email in first_subject
+    and first_body; put follow-ups in steps_json.'
+parameters:
+- name: name
+  type: string
+  required: true
+  label:
+    en_US: Name
+    zh_Hans: 名称
+  human_description:
+    en_US: The campaign name.
+    zh_Hans: 活动名称。
+  llm_description: Campaign name, up to 255 characters.
+  form: llm
+- name: description
+  type: string
+  required: false
+  label:
+    en_US: Description
+    zh_Hans: 描述
+  human_description:
+    en_US: Optional internal description.
+    zh_Hans: 可选的内部描述。
+  llm_description: Optional internal description of the campaign.
+  form: llm
+- name: first_subject
+  type: string
+  required: false
+  label:
+    en_US: First email subject
+    zh_Hans: 首封邮件主题
+  human_description:
+    en_US: Subject of the first email.
+    zh_Hans: 第一封邮件的主题。
+  llm_description: Subject line of the first email in the sequence.
+  form: llm
+- name: first_body
+  type: string
+  required: false
+  label:
+    en_US: First email body
+    zh_Hans: 首封邮件正文
+  human_description:
+    en_US: Plain text body of the first email.
+    zh_Hans: 第一封邮件的纯文本正文。
+  llm_description: Plain text body of the first email. Write it as a short personal note.
+  form: llm
+- name: steps_json
+  type: string
+  required: false
+  label:
+    en_US: Follow-up steps (JSON)
+    zh_Hans: 后续步骤（JSON）
+  human_description:
+    en_US: Optional JSON array of later steps, each with subject, body_plain and wait_after (days).
+    zh_Hans: 可选的后续步骤 JSON 数组，每项包含 subject、body_plain 和 wait_after（天数）。
+  llm_description: 'Optional JSON array of follow-up steps added after the first email, in order. Each item may
+    have only: name, subject, body_plain, body_html, wait_after (days to wait after this step), thread_reply (true
+    replies in the same thread). Example: [{"body_plain": "Following up on my note.", "wait_after": 3}]'
+  form: llm
+- name: daily_limit
+  type: number
+  required: false
+  label:
+    en_US: Daily limit per mailbox
+    zh_Hans: 每个邮箱每日上限
+  human_description:
+    en_US: Emails per mailbox per day. AY Inbox defaults to 50.
+    zh_Hans: 每个邮箱每天的邮件数。AY Inbox 默认为 50。
+  llm_description: Optional emails per mailbox per day, 3 to 5000. Leave empty to keep the default of 50; do not
+    raise it without a reason.
+  form: llm
+  min: 3
+  max: 5000
+- name: timezone
+  type: string
+  required: false
+  label:
+    en_US: Time zone
+    zh_Hans: 时区
+  human_description:
+    en_US: IANA time zone for the sending schedule.
+    zh_Hans: 发送计划使用的 IANA 时区。
+  llm_description: Optional IANA time zone such as Europe/London. Empty follows the workspace.
+  form: llm
+- name: stop_on_reply
+  type: boolean
+  required: false
+  label:
+    en_US: Stop on reply
+    zh_Hans: 回复后停止
+  human_description:
+    en_US: Stop follow-ups for a lead who replies.
+    zh_Hans: 线索回复后停止后续邮件。
+  llm_description: Optional. True stops follow-ups when a lead replies.
+  form: llm
+- name: text_only
+  type: boolean
+  required: false
+  label:
+    en_US: Text only
+    zh_Hans: 仅纯文本
+  human_description:
+    en_US: Send plain text only.
+    zh_Hans: 仅发送纯文本。
+  llm_description: Optional. True sends plain text only.
+  form: llm
+- name: sender_mailbox_ids
+  type: string
+  required: false
+  label:
+    en_US: Sender mailbox ids
+    zh_Hans: 发件邮箱 ID
+  human_description:
+    en_US: Comma-separated mailbox ids to send from.
+    zh_Hans: 以逗号分隔的发件邮箱 ID。
+  llm_description: Optional comma-separated mailbox UUIDs (from list_mailboxes) the campaign sends from. Required
+    when the key is limited to certain mailboxes.
+  form: llm
+- name: idempotency_key
+  type: string
+  required: false
+  label:
+    en_US: Idempotency key
+    zh_Hans: 幂等键
+  human_description:
+    en_US: Optional. Repeating a call with the same key within 24 hours does not apply the change twice.
+    zh_Hans: 可选。24 小时内使用相同的键重复调用不会重复执行更改。
+  llm_description: Optional unique string (for example a UUID). Reuse the same value only when retrying the same
+    call. A call with a key is retried safely on temporary errors; a call without one is not.
+  form: llm
+extra:
+  python:
+    source: tools/create_campaign_draft.py
