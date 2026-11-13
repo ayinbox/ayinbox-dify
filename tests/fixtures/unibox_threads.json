@@ -1,0 +1,27 @@
+{
+  "data": [
+    {
+      "id": "55555555-5555-4555-8555-111111111111",
+      "email_id": "33333333-3333-4333-8333-111111111111",
+      "thread_id": "thread-example-001",
+      "from_addr": [
+        "Lee Example <lee@example.com>"
+      ],
+      "to_addr": [
+        "sales@example.com"
+      ],
+      "subject": "Re: Quick question",
+      "snippet": "Thanks, Tuesday works for me.",
+      "internal_date": "2026-11-12T14:30:00Z",
+      "seen": false,
+      "message_count": 2,
+      "has_unread": true,
+      "labels": [],
+      "campaign_id": "11111111-1111-4111-8111-222222222222"
+    }
+  ],
+  "pagination": {
+    "next_cursor": "c1_ZmFrZS11bmlib3gtY3Vyc29y",
+    "has_more": true
+  }
+}

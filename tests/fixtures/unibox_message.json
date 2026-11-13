@@ -1,0 +1,33 @@
+{
+  "id": "55555555-5555-4555-8555-111111111111",
+  "gmail_id": "18c0example",
+  "uid": 0,
+  "email_id": "33333333-3333-4333-8333-111111111111",
+  "folder": "inbox",
+  "parent_id": "",
+  "thread_id": "thread-example-001",
+  "flags": [
+    "INBOX"
+  ],
+  "bcc": [],
+  "cc": [],
+  "date": "2026-11-12T14:30:00Z",
+  "from": [
+    "Lee Example <lee@example.com>"
+  ],
+  "in_reply_to": [
+    "<msg-1@example.com>"
+  ],
+  "message_id": "<msg-2@example.com>",
+  "ReplyTo": [],
+  "to": [
+    "sales@example.com"
+  ],
+  "subject": "Re: Quick question",
+  "size": 2048,
+  "internal_date": "2026-11-12T14:30:00Z",
+  "mod_seq": 0,
+  "body_plain": "Thanks, Tuesday works for me.\n",
+  "body_html": "<p>Thanks, Tuesday works for me.</p>",
+  "body_truncated": false
+}

@@ -1,0 +1,15 @@
+{
+  "user_id": "00000000-0000-4000-8000-0000000000bb",
+  "email": "dana@example.com",
+  "name": "Dana Example",
+  "first_name": "Dana",
+  "last_name": "Example",
+  "organization_id": "00000000-0000-4000-8000-0000000000aa",
+  "organization_name": "Example Co",
+  "auth_type": "api_key",
+  "scopes": [
+    "read_campaigns",
+    "read_contacts",
+    "write_contacts"
+  ]
+}

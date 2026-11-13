@@ -1,0 +1,41 @@
+{
+  "id": "22222222-2222-4222-8222-111111111111",
+  "first_name": "Lee",
+  "last_name": "Example",
+  "email": "lee@example.com",
+  "company": "Example Co",
+  "phone": "",
+  "custom_fields": {
+    "title": "Head of Ops"
+  },
+  "subscribed": true,
+  "campaigns": [
+    {
+      "id": "11111111-1111-4111-8111-222222222222",
+      "name": "Webinar follow-up"
+    }
+  ],
+  "categories": [
+    {
+      "id": "99999999-9999-4999-8999-111111111111",
+      "title": "VIP",
+      "color": "#0ea5e9"
+    }
+  ],
+  "verification_status": "valid",
+  "verification_reason": "",
+  "is_catch_all": false,
+  "verification_source": "check",
+  "verification_provider": "",
+  "verification_sub_status": "",
+  "verification_confidence": 90,
+  "mail_host": "google",
+  "esp_provider": "gmail",
+  "updated_at": "2026-11-12T14:30:00Z",
+  "created_at": "2026-11-01T09:00:00Z",
+  "engagement": {},
+  "source": "api",
+  "source_detail": "Example key",
+  "first_seen_at": "2026-11-01T09:00:00Z",
+  "consent_required": false
+}

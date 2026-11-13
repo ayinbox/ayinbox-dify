@@ -1,0 +1,24 @@
+{
+  "campaign_id": "11111111-1111-4111-8111-222222222222",
+  "name": "Webinar follow-up",
+  "status": "active",
+  "date_range": {
+    "from": "2026-11-01T09:00:00Z",
+    "to": "2026-11-12T14:30:00Z"
+  },
+  "summary": {
+    "total_contacts": 200,
+    "emails_sent": 180,
+    "emails_pending": 20,
+    "unique_opens": 0,
+    "machine_opens": 0,
+    "unique_clicks": 0,
+    "machine_clicks": 0,
+    "replies": 9,
+    "positive_replies": 4,
+    "interested_leads": 3,
+    "bounces": 1,
+    "unsubscribes": 0
+  },
+  "steps": []
+}

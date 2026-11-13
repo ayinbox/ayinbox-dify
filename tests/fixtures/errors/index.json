@@ -1,0 +1,132 @@
+{
+  "errors": {
+    "errors/400_bad_request.json": {
+      "status": 400,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/400_invalid_cursor.json": {
+      "status": 400,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/401_unauthorized.json": {
+      "status": 401,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/401_api_key_holder_left.json": {
+      "status": 401,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/402_insufficient_credits.json": {
+      "status": 402,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/403_forbidden.json": {
+      "status": 403,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/403_api_key_mailbox_limited.json": {
+      "status": 403,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/404_not_found.json": {
+      "status": 404,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/409_conflict.json": {
+      "status": 409,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/409_idempotency_outcome_unknown.json": {
+      "status": 409,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/409_idempotent_secret_withheld.json": {
+      "status": 409,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/422_unprocessable.json": {
+      "status": 422,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/429_api_key_rate_limited.json": {
+      "status": 429,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001",
+        "Retry-After": "12",
+        "X-RateLimit-Limit": "60",
+        "X-RateLimit-Remaining": "0",
+        "X-RateLimit-Policy": "60;w=60"
+      }
+    },
+    "errors/429_category_rate_limited.json": {
+      "status": 429,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Retry-After": "12",
+        "X-RateLimit-Limit": "100",
+        "X-RateLimit-Remaining": "0",
+        "X-RateLimit-Reset": "1700000060"
+      }
+    },
+    "errors/500_internal_error.json": {
+      "status": 500,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001"
+      }
+    },
+    "errors/503_service_unavailable.json": {
+      "status": 503,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "X-Request-Id": "req-fixture-0001",
+        "Retry-After": "5"
+      }
+    }
+  },
+  "default_success_headers": {
+    "Content-Type": "application/json; charset=utf-8",
+    "X-Request-Id": "req-fixture-0001",
+    "API-Version": "v1",
+    "X-RateLimit-Limit": "60",
+    "X-RateLimit-Remaining": "59",
+    "X-RateLimit-Policy": "60;w=60"
+  }
+}
